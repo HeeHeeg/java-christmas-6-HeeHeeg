@@ -71,4 +71,22 @@ class InputValidationTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
+
+    @DisplayName("메뉴판에 있는 메뉴면 true를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"양송이수프","해산물파스타", "초코케이크", "레드와인"})
+    void checkMenuIsTrue(String menuName) {
+        //when-then
+        boolean validMenu = inputValidation.isValidMenu(menuName);
+        assertThat(validMenu).isTrue();
+    }
+
+    @DisplayName("메뉴판에 있는 메뉴가 아니면 false를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"감자수프","해물파스타", "케이크", "화이트와인"})
+    void checkMenuIsFalse(String menuName) {
+        //when-then
+        boolean validMenu = inputValidation.isValidMenu(menuName);
+        assertThat(validMenu).isFalse();
+    }
 }
