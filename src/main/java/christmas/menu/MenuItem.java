@@ -1,8 +1,8 @@
 package christmas.menu;
 
 public class MenuItem {
-    private String menuName;
-    private int quantity;
+    private final String menuName;
+    private final int quantity;
 
     public MenuItem(String menuName, int quantity) {
         this.menuName = menuName;
