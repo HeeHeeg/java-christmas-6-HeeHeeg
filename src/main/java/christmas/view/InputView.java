@@ -18,12 +18,23 @@ public class InputView {
         while (!validInputNumber) {
             try {
                 String input = Console.readLine();
-                inputNumber = Integer.parseInt(input);
+                inputNumber = parseNumber(input);
                 inputValidation.days(inputNumber);
                 validInputNumber = true;
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
+        }
+        return inputNumber;
+    }
+
+    private int parseNumber(String input) {
+        int inputNumber = 0;
+        try {
+            inputNumber = Integer.parseInt(input);
+
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
         }
         return inputNumber;
     }
