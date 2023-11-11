@@ -54,9 +54,9 @@ class InputValidationTest {
     @ParameterizedTest
     @ValueSource(strings = {"숫자가아닌 값", "1j", " "})
     void checkMenuQuantityNotNumber(String input) {
-        assertThatThrownBy(() -> inputParser.dateParseNumber(input))
+        assertThatThrownBy(() -> inputParser.menuQuantityParseNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 
     @DisplayName("중복 메뉴를 입력하면 예외가 발생한다.")
