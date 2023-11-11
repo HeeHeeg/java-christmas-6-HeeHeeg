@@ -20,8 +20,8 @@ public class InputView {
         while (!validInputNumber) {
             try {
                 String input = Console.readLine();
-                inputNumber = inputParser.parseNumber(input);
-                inputValidation.validateDate(inputNumber);
+                inputNumber = inputParser.dateParseNumber(input);
+                inputValidation.date(inputNumber);
                 validInputNumber = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

@@ -1,7 +1,7 @@
 package christmas.validation;
 
 public class InputParser {
-    public int parseNumber(String input) {
+    public int dateParseNumber(String input) {
         int inputNumber = 0;
         try {
             inputNumber = Integer.parseInt(input);
