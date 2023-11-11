@@ -8,18 +8,29 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class InputValidationTest {
-    private InputValidation inputValidation;
+    private InputValidator inputValidation;
+    private InputParser inputParser;
 
     @BeforeEach
     void setUp() {
-        inputValidation = new InputValidation();
+        inputValidation = new InputValidator();
+        inputParser = new InputParser();
     }
 
     @DisplayName("방문할 날짜가 1 이상 31 이하가 아니면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(ints = {0, 32, -1})
     void dateOutOfRange(int reservationDate) {
-        assertThatThrownBy(() -> inputValidation.days(reservationDate))
+        assertThatThrownBy(() -> inputValidation.validateDate(reservationDate))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+    }
+
+    @DisplayName("방문할 날짜가 숫자가 아니면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"숫자가아닌 값", "1j", " "})
+    void visitDateIsNotNumber(String input) {
+        assertThatThrownBy(() -> inputParser.parseNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
     }
