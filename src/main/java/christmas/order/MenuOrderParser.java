@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MenuOrderParser {
-    private static final InputValidator inputValidation = new InputValidator();
+    private static final InputValidator inputValidator = new InputValidator();
     private static final InputParser inputParser = new InputParser();
 
     public List<MenuItem> parseOrder(String inputMenu) {
@@ -23,7 +23,8 @@ public class MenuOrderParser {
                 throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
             int quantity = inputParser.menuQuantityParseNumber(parts[1].trim());
-            inputValidation.menuQuantity(quantity);
+            inputValidator.menuQuantity(quantity);
+            inputValidator.checkForDuplicateMenu(menuName, orderedMenuList);
             orderedMenuList.add(new MenuItem(menuName, quantity));
         }
         return orderedMenuList;
