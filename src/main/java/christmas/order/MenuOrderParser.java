@@ -1,12 +1,10 @@
 package christmas.order;
 
-import christmas.menu.Menu;
 import christmas.menu.MenuItem;
 import christmas.validation.InputParser;
 import christmas.validation.InputValidator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MenuOrderParser {
@@ -20,19 +18,12 @@ public class MenuOrderParser {
             String[] parts = menuItem.split("-");
             inputValidator.checkMenuLength(parts);
             String menuName = parts[0].trim();
-            if (!isValidMenu(menuName)) {
-                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-            }
+            inputValidator.checkMenuName(menuName);
             int quantity = inputParser.menuQuantityParseNumber(parts[1].trim());
             inputValidator.menuQuantity(quantity);
             inputValidator.checkForDuplicateMenu(menuName, orderedMenuList);
             orderedMenuList.add(new MenuItem(menuName, quantity));
         }
         return orderedMenuList;
-    }
-
-    public boolean isValidMenu(String menuName) {
-        return Arrays.stream(Menu.values())
-                .anyMatch(menu -> menu.getName().equalsIgnoreCase(menuName));
     }
 }

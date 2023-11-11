@@ -1,7 +1,9 @@
 package christmas.validation;
 
+import christmas.menu.Menu;
 import christmas.menu.MenuItem;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class InputValidator {
@@ -29,5 +31,16 @@ public class InputValidator {
         if (parts.length != 2) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
+    }
+
+    public void checkMenuName(String menuName) {
+        if (!isValidMenu(menuName)) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
+    public boolean isValidMenu(String menuName) {
+        return Arrays.stream(Menu.values())
+                .anyMatch(menu -> menu.getName().equalsIgnoreCase(menuName));
     }
 }
