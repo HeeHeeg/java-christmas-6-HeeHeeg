@@ -11,7 +11,7 @@ public class Application {
     private static final OutputView outputView = new OutputView();
     public static void main(String[] args) {
         inputView.readDate();
-        List<MenuItem> orderdeMenu = inputView.readMenu();
-        outputView.printMenu(orderdeMenu);
+        List<MenuItem> orderedMenu = inputView.readMenu();
+        outputView.printMenu(orderedMenu);
     }
 }
