@@ -18,6 +18,7 @@ public class MenuOrderParser {
         List<MenuItem> orderedMenuList = new ArrayList<>();
         for (String menuItem : items) {
             String[] parts = menuItem.split("-");
+            inputValidator.checkMenuLength(parts);
             String menuName = parts[0].trim();
             if (!isValidMenu(menuName)) {
                 throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
