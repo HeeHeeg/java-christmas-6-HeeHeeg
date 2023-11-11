@@ -46,4 +46,16 @@ class MenuOrderParserTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
+
+    @DisplayName("메뉴 수량에 숫자가 아닌 값이 들어오면 예외가 발생한다.")
+    @Test
+    void checkMenuQuantityNotNumber() {
+        // given
+        String inputMenu = "해산물파스타-abc,레드와인-1,초코케이크-1";
+
+        // when-then
+        assertThatThrownBy(() ->  menuOrderParser.parseOrder(inputMenu))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+    }
 }
