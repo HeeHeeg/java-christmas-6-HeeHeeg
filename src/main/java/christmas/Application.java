@@ -14,5 +14,6 @@ public class Application {
         inputView.readDate();
         List<MenuItem> orderedMenu = inputView.readMenu();
         outputView.printMenu(orderedMenu);
+        outputView.printTotalPrice(orderedMenu);
     }
 }

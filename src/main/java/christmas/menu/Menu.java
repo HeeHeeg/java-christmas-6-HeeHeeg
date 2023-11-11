@@ -1,5 +1,8 @@
 package christmas.menu;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 import static christmas.menu.MenuCategory.*;
 
 public enum Menu {
@@ -40,6 +43,12 @@ public enum Menu {
 
     public MenuCategory getCategory() {
         return category;
+    }
+
+    public static Optional<Menu> getMenuByName(String name) {
+        return Arrays.stream(values())
+                .filter(menu -> menu.getName().equalsIgnoreCase(name))
+                .findFirst();
     }
 }
 
