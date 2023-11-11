@@ -32,7 +32,13 @@ public class InputView {
 
     public List<MenuItem> readMenu() {
         System.out.println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
-        String inputMenu = Console.readLine();
-        return menuOrderParser.parseOrder(inputMenu);
+        while (true) {
+            String inputMenu = Console.readLine();
+            try {
+                return menuOrderParser.parseOrder(inputMenu);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
