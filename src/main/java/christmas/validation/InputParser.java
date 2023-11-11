@@ -11,6 +11,7 @@ public class InputParser {
         }
         return inputNumber;
     }
+
     public int menuQuantityParseNumber(String input) {
         int menuQuantity = 0;
         try {
