@@ -15,9 +15,9 @@ class InputValidationTest {
         inputValidation = new InputValidation();
     }
 
+    @DisplayName("방문할 날짜가 1 이상 31 이하가 아니면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(ints = {0, 32, -1})
-    @DisplayName("방문할 날짜가 1 이상 31 이하가 아니면 예외가 발생한다.")
     void dateOutOfRange(int reservationDate) {
         assertThatThrownBy(() -> inputValidation.days(reservationDate))
                 .isInstanceOf(IllegalArgumentException.class)
