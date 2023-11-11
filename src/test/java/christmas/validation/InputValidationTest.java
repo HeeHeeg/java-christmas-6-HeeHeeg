@@ -1,9 +1,14 @@
 package christmas.validation;
 
+import christmas.menu.MenuItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -51,5 +56,18 @@ class InputValidationTest {
         assertThatThrownBy(() -> inputParser.dateParseNumber(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+    }
+
+    @DisplayName("중복 메뉴를 입력하면 예외가 발생한다.")
+    @Test
+    void checkForDuplicateMenu() {
+        List<MenuItem> orderedMenuList = new ArrayList<>();
+        String menuName = "해산물파스타";
+        int quantity = 1;
+        orderedMenuList.add(new MenuItem(menuName, quantity));
+
+        assertThatThrownBy(() -> inputValidation.checkForDuplicateMenu(menuName, orderedMenuList))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 }
