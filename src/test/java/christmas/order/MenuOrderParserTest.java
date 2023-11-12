@@ -12,11 +12,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class MenuOrderParserTest {
     MenuOrderParser menuOrderParser;
-    
+
     @BeforeEach
     void setUp() {
         menuOrderParser = new MenuOrderParser();
     }
+
     @DisplayName("메뉴는 ','와 '-'를 기준으로 분리해서 리스트에 담는다.")
     @Test
     void splitInputMenu() {
@@ -42,7 +43,7 @@ class MenuOrderParserTest {
         String inputMenu = "해산물파스타-0,레드와인-1,초코케이크-1";
 
         // when-then
-        assertThatThrownBy(() ->  menuOrderParser.parseOrder(inputMenu))
+        assertThatThrownBy(() -> menuOrderParser.parseOrder(inputMenu))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
@@ -54,7 +55,7 @@ class MenuOrderParserTest {
         String inputMenu = "해산물파스타-abc,레드와인-1,초코케이크-1";
 
         // when-then
-        assertThatThrownBy(() ->  menuOrderParser.parseOrder(inputMenu))
+        assertThatThrownBy(() -> menuOrderParser.parseOrder(inputMenu))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
@@ -66,7 +67,7 @@ class MenuOrderParserTest {
         String inputMenu = "해산물파스타-1,해산물파스타-1,초코케이크-1";
 
         // when-then
-        assertThatThrownBy(() ->  menuOrderParser.parseOrder(inputMenu))
+        assertThatThrownBy(() -> menuOrderParser.parseOrder(inputMenu))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
