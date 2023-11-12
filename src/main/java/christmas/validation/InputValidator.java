@@ -1,10 +1,12 @@
 package christmas.validation;
 
 import christmas.menu.Menu;
+import christmas.menu.MenuCategory;
 import christmas.menu.MenuItem;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class InputValidator {
     public void date(int reservationDate) {
@@ -42,5 +44,15 @@ public class InputValidator {
     public boolean isValidMenu(String menuName) {
         return Arrays.stream(Menu.values())
                 .anyMatch(menu -> menu.getName().equalsIgnoreCase(menuName));
+    }
+
+    public void checkOnlyBeveragesOrdered(List<MenuItem> orderedMenuList) {
+        for (MenuItem menuItem : orderedMenuList) {
+            Optional<Menu> menu = Menu.getMenuByName(menuItem.getMenuName());
+            if (menu.isPresent() && menu.get().getCategory() != MenuCategory.BEVERAGE) {
+                return;
+            }
+        }
+        throw new IllegalArgumentException("[ERROR] 음료만 주문 시, 주문할 수 없습니다. 다시 입력해주세요.");
     }
 }
