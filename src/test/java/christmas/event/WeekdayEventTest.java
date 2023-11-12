@@ -25,4 +25,15 @@ class WeekdayEventTest {
         // then
         assertThat(checkWeekday).isFalse();
     }
+
+    @DisplayName("예약일이 일요일~목요일(평일)이면 true를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {3, 4, 5, 6, 7}) // 2023년 12월의 일요일~목요일 날짜
+    void reservationDateWeekdays(int date) {
+        // when
+        boolean checkWeekday = weekdayEvent.checkWeekdayDiscountPeriod(date);
+
+        // then
+        assertThat(checkWeekday).isTrue();
+    }
 }
