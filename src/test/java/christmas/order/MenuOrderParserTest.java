@@ -83,4 +83,16 @@ class MenuOrderParserTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
+
+    @DisplayName("음료만 주문하면 예외가 발생한다.")
+    @Test
+    void checkOnlyBeveragesOrdered() {
+        // given
+        String inputMenu = "레드와인-1,제로콜라-1,샴페인-1";
+
+        // when-then
+        assertThatThrownBy(() -> menuOrderParser.parseOrder(inputMenu))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 음료만 주문 시, 주문할 수 없습니다. 다시 입력해주세요.");
+    }
 }
