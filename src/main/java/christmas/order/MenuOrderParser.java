@@ -25,6 +25,7 @@ public class MenuOrderParser {
             orderedMenuList.add(new MenuItem(menuName, quantity));
         }
         inputValidator.checkOnlyBeveragesOrdered(orderedMenuList);
+        inputValidator.checkOrderQuantity(orderedMenuList);
         return orderedMenuList;
     }
 }
