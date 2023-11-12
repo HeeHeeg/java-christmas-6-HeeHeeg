@@ -13,7 +13,7 @@ public class OutputView {
         System.out.println();
         System.out.println("<주문 메뉴>");
         for (MenuItem menuItem : menuItems) {
-            System.out.println(menuItem.getMenuName() + " " + menuItem.getQuantity() + "개");
+            System.out.println(menuItem.getMenu() + " " + menuItem.getQuantity() + "개");
         }
         System.out.println();
     }
@@ -22,7 +22,7 @@ public class OutputView {
         System.out.println("<할인 전 총주문 금액>");
         int totalPrice = 0;
         for (MenuItem menuItem : menuItems) {
-            totalPrice += orderCalculator.calculatePrice(menuItem.getMenuName(), menuItem.getQuantity());
+            totalPrice += orderCalculator.calculatePrice(menuItem.getMenu().getName(), menuItem.getQuantity());
         }
         System.out.println(totalPrice + "원");
     }

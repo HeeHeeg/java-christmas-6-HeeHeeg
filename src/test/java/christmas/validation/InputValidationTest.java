@@ -1,5 +1,6 @@
 package christmas.validation;
 
+import christmas.menu.Menu;
 import christmas.menu.MenuItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -45,7 +46,7 @@ class InputValidationTest {
         List<MenuItem> orderedMenuList = new ArrayList<>();
         String menuName = "해산물파스타";
         int quantity = 1;
-        orderedMenuList.add(new MenuItem(menuName, quantity));
+        orderedMenuList.add(new MenuItem(Menu.getMenuByName(menuName).orElse(null), quantity));
 
         assertThatThrownBy(() -> inputValidation.checkForDuplicateMenu(menuName, orderedMenuList))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -79,8 +80,8 @@ class InputValidationTest {
         String menuName2 = "레드와인";
         int quantity1 = 1;
         int quantity2 = 2;
-        orderedMenuList.add(new MenuItem(menuName1, quantity1));
-        orderedMenuList.add(new MenuItem(menuName2, quantity2));
+        orderedMenuList.add(new MenuItem(Menu.getMenuByName(menuName1).orElse(null), quantity1));
+        orderedMenuList.add(new MenuItem(Menu.getMenuByName(menuName2).orElse(null), quantity2));
 
         // when-then
         assertThatThrownBy(() -> inputValidation.checkOnlyBeveragesOrdered(orderedMenuList))
@@ -97,8 +98,8 @@ class InputValidationTest {
         String menuName2 = "레드와인";
         int quantity1 = 11;
         int quantity2 = 10;
-        orderedMenuList.add(new MenuItem(menuName1, quantity1));
-        orderedMenuList.add(new MenuItem(menuName2, quantity2));
+        orderedMenuList.add(new MenuItem(Menu.getMenuByName(menuName1).orElse(null), quantity1));
+        orderedMenuList.add(new MenuItem(Menu.getMenuByName(menuName2).orElse(null), quantity2));
 
         // when-then
         assertThatThrownBy(() -> inputValidation.checkOrderQuantity(orderedMenuList))

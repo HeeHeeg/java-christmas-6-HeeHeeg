@@ -1,5 +1,6 @@
 package christmas.order;
 
+import christmas.menu.Menu;
 import christmas.menu.MenuItem;
 import christmas.validation.InputParser;
 import christmas.validation.InputValidator;
@@ -22,7 +23,7 @@ public class MenuOrderParser {
             int quantity = inputParser.menuQuantityParseNumber(parts[1].trim());
             inputValidator.menuQuantity(quantity);
             inputValidator.checkForDuplicateMenu(menuName, orderedMenuList);
-            orderedMenuList.add(new MenuItem(menuName, quantity));
+            orderedMenuList.add(new MenuItem(Menu.getMenuByName(menuName).orElse(null), quantity));
         }
         inputValidator.checkOnlyBeveragesOrdered(orderedMenuList);
         inputValidator.checkOrderQuantity(orderedMenuList);

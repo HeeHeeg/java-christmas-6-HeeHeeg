@@ -1,16 +1,17 @@
 package christmas.menu;
 
 public class MenuItem {
-    private final String menuName;
+    private final Menu menu;
     private final int quantity;
+    private static final int NO_QUANTITY = 0;
 
-    public MenuItem(String menuName, int quantity) {
-        this.menuName = menuName;
+    public MenuItem(Menu menu, int quantity) {
+        this.menu = menu;
         this.quantity = quantity;
     }
 
-    public String getMenuName() {
-        return menuName;
+    public Menu getMenu() {
+        return menu;
     }
 
     public int getQuantity() {

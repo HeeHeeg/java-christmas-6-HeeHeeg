@@ -23,7 +23,7 @@ public class InputValidator {
 
     public void checkForDuplicateMenu(String menuName, List<MenuItem> orderedMenuList) {
         for (MenuItem menuItem : orderedMenuList) {
-            if (menuItem.getMenuName().equalsIgnoreCase(menuName)) {
+            if (menuItem.getMenu().getName().equalsIgnoreCase(menuName)) {
                 throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
         }
@@ -48,7 +48,7 @@ public class InputValidator {
 
     public void checkOnlyBeveragesOrdered(List<MenuItem> orderedMenuList) {
         for (MenuItem menuItem : orderedMenuList) {
-            Optional<Menu> menu = Menu.getMenuByName(menuItem.getMenuName());
+            Optional<Menu> menu = Menu.getMenuByName(menuItem.getMenu().getName());
             if (menu.isPresent() && menu.get().getCategory() != MenuCategory.BEVERAGE) {
                 return;
             }
