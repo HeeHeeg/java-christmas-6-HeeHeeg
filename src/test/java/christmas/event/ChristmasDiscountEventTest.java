@@ -21,7 +21,7 @@ class ChristmasDiscountEventTest {
     @ValueSource(ints = {26, 27, 28, 29, 30, 31})
     void reservationDateByNotChristmasDiscountEventPeriod(int date) {
         // when-then
-        int calculatedDiscount = christmasDiscountEvent.calculateDiscount(date);
+        int calculatedDiscount = christmasDiscountEvent.checkChristmasDiscountPeriod(date);
         assertThat(calculatedDiscount).isEqualTo(0);
     }
 
@@ -30,7 +30,7 @@ class ChristmasDiscountEventTest {
     @CsvSource({"1,1000", "15,2400", "25,3400"})
     void reservationDateByChristmasDiscountEventPeriod(int date, int discountPrice) {
         // when-then
-        int calculatedDiscount = christmasDiscountEvent.calculateDiscount(date);
+        int calculatedDiscount = christmasDiscountEvent.checkChristmasDiscountPeriod(date);
         assertThat(calculatedDiscount).isEqualTo(discountPrice);
     }
 }

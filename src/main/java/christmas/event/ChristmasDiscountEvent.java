@@ -7,7 +7,7 @@ public class ChristmasDiscountEvent {
     private static LocalDate CHRISTMAS_EVENT_END_DATE = LocalDate.of(2023, 12, 25);
     private static int BASE_DISCOUNT = 1000;
 
-    public int calculateDiscount(int date) {
+    public int checkChristmasDiscountPeriod(int date) {
         LocalDate reservationDate = LocalDate.of(2023, 12, date);
         if (reservationDate.isBefore(CHRISTMAS_EVENT_START_DATE) || reservationDate.isAfter(CHRISTMAS_EVENT_END_DATE)) {
             return 0;
