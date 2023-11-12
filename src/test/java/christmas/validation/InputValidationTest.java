@@ -87,4 +87,22 @@ class InputValidationTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 음료만 주문 시, 주문할 수 없습니다. 다시 입력해주세요.");
     }
+
+    @DisplayName("메뉴를 한 번 20개를 초과하여 주문하면 예외가 발생한다.")
+    @Test
+    void checkOrderQuantity() {
+        // given
+        List<MenuItem> orderedMenuList = new ArrayList<>();
+        String menuName1 = "해산물파스타";
+        String menuName2 = "레드와인";
+        int quantity1 = 11;
+        int quantity2 = 10;
+        orderedMenuList.add(new MenuItem(menuName1, quantity1));
+        orderedMenuList.add(new MenuItem(menuName2, quantity2));
+
+        // when-then
+        assertThatThrownBy(() -> inputValidation.checkOrderQuantity(orderedMenuList))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 메뉴는 한 번에 최대 20개 까지만 주문할 수 있습니다.");
+    }
 }
