@@ -38,7 +38,7 @@ class MenuOrderParserTest {
 
     @DisplayName("메뉴 수량이 1이상이 아니면 예외가 발생한다.")
     @Test
-    void checkMenuQuantity() {
+    void parseOrderByCheckMenuQuantity() {
         // given
         String inputMenu = "해산물파스타-0,레드와인-1,초코케이크-1";
 
@@ -50,7 +50,7 @@ class MenuOrderParserTest {
 
     @DisplayName("메뉴 수량에 숫자가 아닌 값이 들어오면 예외가 발생한다.")
     @Test
-    void checkMenuQuantityNotNumber() {
+    void parseOrderByCheckMenuQuantityNotNumber() {
         // given
         String inputMenu = "해산물파스타-abc,레드와인-1,초코케이크-1";
 
@@ -62,7 +62,7 @@ class MenuOrderParserTest {
 
     @DisplayName("중복 메뉴를 입력하면 예외가 발생한다.")
     @Test
-    void checkForDuplicateMenu() {
+    void parseOrderByCheckForDuplicateMenu() {
         // given
         String inputMenu = "해산물파스타-1,해산물파스타-1,초코케이크-1";
 
@@ -74,7 +74,7 @@ class MenuOrderParserTest {
 
     @DisplayName("메뉴판에 있는 메뉴가 아니면 예외가 발생한다")
     @Test
-    void checkMenuIsFalse() {
+    void parseOrderByCheckMenuIsFalse() {
         // given
         String inputMenu = "감자스프-1,해물파스타-1,케이크-1";
 
@@ -86,7 +86,7 @@ class MenuOrderParserTest {
 
     @DisplayName("음료만 주문하면 예외가 발생한다.")
     @Test
-    void checkOnlyBeveragesOrdered() {
+    void parseOrderByCheckOnlyBeveragesOrdered() {
         // given
         String inputMenu = "레드와인-1,제로콜라-1,샴페인-1";
 
