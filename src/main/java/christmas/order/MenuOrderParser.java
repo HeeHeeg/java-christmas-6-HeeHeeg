@@ -22,9 +22,9 @@ public class MenuOrderParser {
             int quantity = inputParser.menuQuantityParseNumber(parts[1].trim());
             inputValidator.menuQuantity(quantity);
             inputValidator.checkForDuplicateMenu(menuName, orderedMenuList);
-            inputValidator.checkOnlyBeveragesOrdered(orderedMenuList);
             orderedMenuList.add(new MenuItem(menuName, quantity));
         }
+        inputValidator.checkOnlyBeveragesOrdered(orderedMenuList);
         return orderedMenuList;
     }
 }
