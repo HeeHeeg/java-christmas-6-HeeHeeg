@@ -1,5 +1,7 @@
 package christmas.menu;
 
+import static christmas.menu.MenuCategory.DESSERT;
+
 public class MenuItem {
     private final Menu menu;
     private final int quantity;
@@ -16,5 +18,12 @@ public class MenuItem {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public int countDessert() {
+        if (menu.getCategory() == DESSERT) {
+            return quantity;
+        }
+        return NO_QUANTITY;
     }
 }
