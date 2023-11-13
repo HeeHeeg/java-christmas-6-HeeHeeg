@@ -50,5 +50,9 @@ public enum Menu {
     public MenuCategory getCategory() {
         return category;
     }
+
+    public int calculatePrice(int quantity) {
+        return this.price * quantity;
+    }
 }
 
