@@ -13,6 +13,6 @@ public class ChristmasDiscountEvent {
             return 0;
         }
         long daysBetween = CHRISTMAS_EVENT_START_DATE.until(reservationDate).getDays();
-        return BASE_DISCOUNT + (int)daysBetween * 100;
+        return BASE_DISCOUNT + (int) daysBetween * 100;
     }
 }

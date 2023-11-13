@@ -4,9 +4,9 @@ import static christmas.menu.MenuCategory.DESSERT;
 import static christmas.menu.MenuCategory.MAIN;
 
 public class MenuItem {
+    private static final int NO_QUANTITY = 0;
     private final Menu menu;
     private final int quantity;
-    private static final int NO_QUANTITY = 0;
 
     public MenuItem(Menu menu, int quantity) {
         this.menu = menu;

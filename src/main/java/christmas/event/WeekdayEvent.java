@@ -26,7 +26,6 @@ public class WeekdayEvent {
         return dayOfWeek == DayOfWeek.FRIDAY || dayOfWeek == DayOfWeek.SATURDAY;
     }
 
-
     public int calculateDiscountForDesserts(List<MenuItem> orderedItems) {
         int dessertCount = 0;
 
