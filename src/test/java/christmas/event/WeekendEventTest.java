@@ -1,6 +1,5 @@
 package christmas.event;
 
-import christmas.menu.Menu;
 import christmas.menu.MenuItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -9,6 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static christmas.menu.Menu.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class WeekendEventTest {
@@ -25,8 +25,8 @@ class WeekendEventTest {
     void reservationDateByNotWeekday(int date) {
         // given
         List<MenuItem> orderedItems = List.of(
-                new MenuItem(Menu.getMenuByName("해산물파스타").orElse(null), 1),
-                new MenuItem(Menu.getMenuByName("아이스크림").orElse(null), 2));
+                new MenuItem(getMenuByName("해산물파스타").orElse(null), 1),
+                new MenuItem(getMenuByName("아이스크림").orElse(null), 2));
 
         // when
         int discountedPrice = weekendEvent.calculateMainDiscount(orderedItems, date);
@@ -41,9 +41,9 @@ class WeekendEventTest {
     void reservationDateWeekdaysDiscountPerDessert(int date) {
         // given
         List<MenuItem> orderedItems = List.of(
-                new MenuItem(Menu.getMenuByName("해산물파스타").orElse(null), 1),
-                new MenuItem(Menu.getMenuByName("티본스테이크").orElse(null), 2),
-                new MenuItem(Menu.getMenuByName("아이스크림").orElse(null), 2));
+                new MenuItem(SEAFOOD_PASTA, 1),
+                new MenuItem(T_BONE_STEAK, 2),
+                new MenuItem(ICE_CREAM, 2));
 
         // when
         int discountedPrice = weekendEvent.calculateMainDiscount(orderedItems, date);
