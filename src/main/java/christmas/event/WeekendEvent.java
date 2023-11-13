@@ -6,19 +6,18 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 
+import static christmas.event.EventManager.DISCOUNT_ZERO;
+import static christmas.event.EventManager.isWithinDecemberEventPeriod;
+
 public class WeekendEvent {
     private static final int DISCOUNT_PER_MAIN_PRICE = 2023;
-    private static LocalDate WEEKEND_EVENT_START_DATE = LocalDate.of(2023, 12, 1);
-    private static LocalDate WEEKEND_EVENT_END_DATE = LocalDate.of(2023, 12, 31);
 
     public int calculateMainDiscount(List<MenuItem> orderedItems, int date) {
         LocalDate reservationDate = LocalDate.of(2023, 12, date);
-        if (reservationDate.isBefore(WEEKEND_EVENT_START_DATE)
-                || reservationDate.isAfter(WEEKEND_EVENT_END_DATE)
-                || !isWeekend(reservationDate)) {
-            return 0;
+        if (!isWithinDecemberEventPeriod(reservationDate) || !isWeekend(reservationDate)) {
+            return DISCOUNT_ZERO;
         }
-        return calculateDiscountForDesserts(orderedItems);
+        return calculateDiscountForMain(orderedItems);
     }
 
     private boolean isWeekend(LocalDate date) {
@@ -26,7 +25,7 @@ public class WeekendEvent {
         return dayOfWeek == DayOfWeek.FRIDAY || dayOfWeek == DayOfWeek.SATURDAY;
     }
 
-    public int calculateDiscountForDesserts(List<MenuItem> orderedItems) {
+    public int calculateDiscountForMain(List<MenuItem> orderedItems) {
         int mainCount = 0;
 
         for (MenuItem orderedItem : orderedItems) {

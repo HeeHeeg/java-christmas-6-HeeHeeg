@@ -3,21 +3,21 @@ package christmas.event;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
-public class SpecialDiscountEvent {
-    private static LocalDate SPECIAL_EVENT_START_DATE = LocalDate.of(2023, 12, 1);
-    private static LocalDate SPECIAL_EVENT_END_DATE = LocalDate.of(2023, 12, 31);
-    private static int DISCOUNT = 1000;
+import static christmas.event.EventManager.isWithinDecemberEventPeriod;
 
+public class SpecialDiscountEvent {
+    private static final int DISCOUNT = 1000;
+    private static final int DISCOUNT_ZERO = 0;
+    private static final int SPECIAL_DAY = 25;
 
     public int calculateSpecialDiscount(int date) {
         LocalDate reservationDate = LocalDate.of(2023, 12, date);
-        if (reservationDate.isBefore(SPECIAL_EVENT_START_DATE)
-                || reservationDate.isAfter(SPECIAL_EVENT_END_DATE)) {
-            return 0;
+        if (!isWithinDecemberEventPeriod(reservationDate)) {
+            return DISCOUNT_ZERO;
         }
-        if (date == 25 || reservationDate.getDayOfWeek() == DayOfWeek.SUNDAY) {
+        if (date == SPECIAL_DAY || reservationDate.getDayOfWeek() == DayOfWeek.SUNDAY) {
             return DISCOUNT;
         }
-        return 0;
+        return DISCOUNT_ZERO;
     }
 }
