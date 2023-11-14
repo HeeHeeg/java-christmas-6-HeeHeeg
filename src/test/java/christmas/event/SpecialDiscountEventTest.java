@@ -25,6 +25,7 @@ class SpecialDiscountEventTest {
         // then
         assertThat(discountedPrice).isEqualTo(1000);
     }
+
     @DisplayName("별 표시가 없는 날 주문 시 0원 할인이 반환된다.")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 30})

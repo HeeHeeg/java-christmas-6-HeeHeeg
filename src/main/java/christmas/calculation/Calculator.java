@@ -15,6 +15,7 @@ public class Calculator {
     private static final WeekendEvent weekendEvent = new WeekendEvent();
     private static final SpecialDiscountEvent specialDiscountEvent = new SpecialDiscountEvent();
     private static final GiveawayEvent giveawayEvent = new GiveawayEvent();
+
     public int totalPrice(List<MenuItem> menuItems) {
         int totalPrice = 0;
         for (MenuItem menuItem : menuItems) {
@@ -81,10 +82,10 @@ public class Calculator {
 
         int totalBenefitAmount =
                 christmasBenefitAmount
-                + weekdayBenefitAmount
-                + weekendBenefitAmount
-                + specialBenefitAmount
-                + giveawayBenefitAmount;
+                        + weekdayBenefitAmount
+                        + weekendBenefitAmount
+                        + specialBenefitAmount
+                        + giveawayBenefitAmount;
         return totalBenefitAmount;
     }
 

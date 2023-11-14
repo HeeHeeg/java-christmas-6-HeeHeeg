@@ -2,7 +2,7 @@ package christmas.view;
 
 import christmas.calculation.Calculator;
 import christmas.calculation.PriceFormatter;
-import christmas.event.*;
+import christmas.event.GiveawayEvent;
 import christmas.menu.MenuItem;
 
 import java.util.List;
