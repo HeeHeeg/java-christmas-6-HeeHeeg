@@ -16,7 +16,7 @@ public class Application {
         inputView.readDate();
         List<MenuItem> orderedMenu = inputView.readMenu();
         outputView.printMenu(orderedMenu);
-        int totalPrice = calculator.calculateTotalPrice(orderedMenu);
+        int totalPrice = calculator.totalPrice(orderedMenu);
         outputView.printTotalPrice(totalPrice);
     }
 }
