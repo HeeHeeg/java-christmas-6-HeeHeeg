@@ -20,5 +20,4 @@ class MenuTest {
         //then
         assertThat(totalPrice).isEqualTo(270000);
     }
-
 }

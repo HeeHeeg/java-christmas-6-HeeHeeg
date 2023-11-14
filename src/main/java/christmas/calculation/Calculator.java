@@ -38,12 +38,8 @@ public class Calculator {
         int specialBenefitAmount = getSpecialBenefitAmount(date);
         int giveawayBenefitAmount = getGiveawayBenefitAmount(date, menuItems);
 
-        int totalBenefitAmount = getTotalBenefitAmount(
-                christmasBenefitAmount,
-                weekdayBenefitAmount,
-                weekendBenefitAmount,
-                specialBenefitAmount,
-                giveawayBenefitAmount);
+        int totalBenefitAmount = getTotalBenefitAmount(christmasBenefitAmount, weekdayBenefitAmount,
+                weekendBenefitAmount, specialBenefitAmount, giveawayBenefitAmount);
         return totalBenefitAmount;
     }
 
@@ -80,12 +76,8 @@ public class Calculator {
             int christmasBenefitAmount, int weekdayBenefitAmount, int weekendBenefitAmount,
             int specialBenefitAmount, int giveawayBenefitAmount) {
 
-        int totalBenefitAmount =
-                christmasBenefitAmount
-                        + weekdayBenefitAmount
-                        + weekendBenefitAmount
-                        + specialBenefitAmount
-                        + giveawayBenefitAmount;
+        int totalBenefitAmount = christmasBenefitAmount + weekdayBenefitAmount
+                + weekendBenefitAmount + specialBenefitAmount + giveawayBenefitAmount;
         return totalBenefitAmount;
     }
 

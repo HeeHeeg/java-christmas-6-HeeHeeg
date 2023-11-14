@@ -30,7 +30,7 @@ public class CheckBenefits {
                 calculator.getWeekdayBenefitAmount(date, menuItems) == DISCOUNT_ZERO &&
                 calculator.getWeekendBenefitAmount(date, menuItems) == DISCOUNT_ZERO &&
                 calculator.getGiveawayBenefitAmount(date, menuItems) == DISCOUNT_ZERO)) {
-        return "없음";
+            return "없음";
         }
         return "";
     }
@@ -88,6 +88,7 @@ public class CheckBenefits {
     private String getTotalBenefitAmount(int date, List<MenuItem> menuItems) {
         return priceFormatter.formatPrice(calculator.totalBenefitAmount(date, menuItems));
     }
+
     private String christmasBenefitAmount(int date) {
         return priceFormatter.formatPrice(calculator.getChristmasBenefitAmount(date));
     }
