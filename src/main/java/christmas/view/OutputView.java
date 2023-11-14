@@ -42,6 +42,12 @@ public class OutputView {
         System.out.println("증정 이벤트: -" + giveawayBenefitAmount(date, menuItems) + "원");
     }
 
+    public void totalBenefitAmount(int date, List<MenuItem> menuItems) {
+        System.out.println();
+        System.out.println("<총혜택 금액>");
+        System.out.println("-" + getTotalBenefitAmount(date, menuItems) + "원");
+    }
+
     private String christmasBenefitAmount(int date) {
         return priceFormatter.formatPrice(calculator.getChristmasBenefitAmount(date));
     }
@@ -56,5 +62,9 @@ public class OutputView {
 
     private String giveawayBenefitAmount(int date, List<MenuItem> menuItems) {
         return priceFormatter.formatPrice(calculator.getGiveawayBenefitAmount(date, menuItems));
+    }
+
+    private static String getTotalBenefitAmount(int date, List<MenuItem> menuItems) {
+        return priceFormatter.formatPrice(calculator.totalBenefitAmount(date, menuItems));
     }
 }

@@ -20,5 +20,6 @@ public class Application {
         outputView.printTotalPrice(totalPrice);
         outputView.printGiveawayMenu(date, orderedMenu);
         outputView.benefitDetails(date, orderedMenu);
+        outputView.totalBenefitAmount(date, orderedMenu);
     }
 }
