@@ -49,6 +49,16 @@ public class OutputView {
         System.out.println("-" + getTotalBenefitAmount(date, menuItems) + "원");
     }
 
+    public void totalPaymentAmount(int date, List<MenuItem> menuItems) {
+        System.out.println();
+        System.out.println("<할인 후 예상 결제 금액>");
+        System.out.println(expectedPaymentAmount(date, menuItems));
+    }
+
+    private String expectedPaymentAmount(int date, List<MenuItem> menuItems) {
+        return priceFormatter.formatPrice(calculator.expectedPaymentAmount(date, menuItems));
+    }
+
     private String christmasBenefitAmount(int date) {
         return priceFormatter.formatPrice(calculator.getChristmasBenefitAmount(date));
     }
