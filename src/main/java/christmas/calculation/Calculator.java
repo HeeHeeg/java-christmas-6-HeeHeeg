@@ -31,10 +31,10 @@ public class Calculator {
     }
 
     private int getTotalBenefitAmount(int date, List<MenuItem> menuItems) {
-        int christmasBenefitAmount = christmasDiscountEvent.checkChristmasDiscountPeriod(date);
-        int weekdayBenefitAmount = weekdayEvent.calculateDessertDiscount(menuItems, date);
-        int weekendBenefitAmount = weekendEvent.calculateMainDiscount(menuItems, date);
-        int specialBenefitAmount = specialDiscountEvent.calculateSpecialDiscount(date);
+        int christmasBenefitAmount = getChristmasBenefitAmount(date);
+        int weekdayBenefitAmount = getWeekdayBenefitAmount(date, menuItems);
+        int weekendBenefitAmount = getWeekendBenefitAmount(date, menuItems);
+        int specialBenefitAmount = getSpecialBenefitAmount(date);
         int giveawayBenefitAmount = getGiveawayBenefitAmount(date, menuItems);
 
         int totalBenefitAmount = getTotalBenefitAmount(
@@ -46,7 +46,27 @@ public class Calculator {
         return totalBenefitAmount;
     }
 
-    private int getGiveawayBenefitAmount(int date, List<MenuItem> menuItems) {
+    public int getChristmasBenefitAmount(int date) {
+        int christmasBenefitAmount = christmasDiscountEvent.checkChristmasDiscountPeriod(date);
+        return christmasBenefitAmount;
+    }
+
+    public int getWeekdayBenefitAmount(int date, List<MenuItem> menuItems) {
+        int weekdayBenefitAmount = weekdayEvent.calculateDessertDiscount(menuItems, date);
+        return weekdayBenefitAmount;
+    }
+
+    public int getWeekendBenefitAmount(int date, List<MenuItem> menuItems) {
+        int weekendBenefitAmount = weekendEvent.calculateMainDiscount(menuItems, date);
+        return weekendBenefitAmount;
+    }
+
+    public int getSpecialBenefitAmount(int date) {
+        int specialBenefitAmount = specialDiscountEvent.calculateSpecialDiscount(date);
+        return specialBenefitAmount;
+    }
+
+    public int getGiveawayBenefitAmount(int date, List<MenuItem> menuItems) {
         Menu giveawayItem = giveawayEvent.checkGiveawayEvent(date, menuItems);
         int giveawayBenefitAmount = 0;
         if (giveawayItem != null) {
