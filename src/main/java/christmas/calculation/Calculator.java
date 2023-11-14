@@ -27,16 +27,15 @@ public class Calculator {
         if (totalPrice(menuItems) < MINIMUM_ORDER_AMOUNT) {
             return DISCOUNT_ZERO;
         }
+        return getTotalBenefitAmount(date, menuItems);
+    }
+
+    private int getTotalBenefitAmount(int date, List<MenuItem> menuItems) {
         int christmasBenefitAmount = christmasDiscountEvent.checkChristmasDiscountPeriod(date);
         int weekdayBenefitAmount = weekdayEvent.calculateDessertDiscount(menuItems, date);
         int weekendBenefitAmount = weekendEvent.calculateMainDiscount(menuItems, date);
         int specialBenefitAmount = specialDiscountEvent.calculateSpecialDiscount(date);
-
-        Menu giveawayItem = giveawayEvent.checkGiveawayEvent(date, menuItems);
-        int giveawayBenefitAmount = 0;
-        if (giveawayItem != null) {
-            giveawayBenefitAmount = giveawayItem.getPrice();
-        }
+        int giveawayBenefitAmount = getGiveawayBenefitAmount(date, menuItems);
 
         int totalBenefitAmount = getTotalBenefitAmount(
                 christmasBenefitAmount,
@@ -45,6 +44,15 @@ public class Calculator {
                 specialBenefitAmount,
                 giveawayBenefitAmount);
         return totalBenefitAmount;
+    }
+
+    private int getGiveawayBenefitAmount(int date, List<MenuItem> menuItems) {
+        Menu giveawayItem = giveawayEvent.checkGiveawayEvent(date, menuItems);
+        int giveawayBenefitAmount = 0;
+        if (giveawayItem != null) {
+            giveawayBenefitAmount = giveawayItem.getPrice();
+        }
+        return giveawayBenefitAmount;
     }
 
     private int getTotalBenefitAmount(
