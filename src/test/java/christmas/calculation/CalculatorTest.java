@@ -51,4 +51,18 @@ class CalculatorTest {
         int expectedTotalBenefitAmount = 33446;
         assertThat(totalledPrice).isEqualTo(expectedTotalBenefitAmount);
     }
+
+    @DisplayName("총주문 금액이 10000원 미만이면 총혜택 금액 0원을 반환한다.")
+    @Test
+    void calculateTotalBenefitAmountZero() {
+        //given
+        int date = 25;
+        List<MenuItem> orderedItems = List.of(new MenuItem(Menu.ICE_CREAM, 1));
+
+        //when
+        int totalledPrice = calculator.totalBenefitAmount(date, orderedItems);
+
+        //then
+        assertThat(totalledPrice).isEqualTo(0);
+    }
 }
