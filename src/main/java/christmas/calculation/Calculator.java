@@ -67,4 +67,8 @@ public class Calculator {
                 + giveawayBenefitAmount;
         return totalBenefitAmount;
     }
+
+    public int expectedPaymentAmount(int date, List<MenuItem> menuItems) {
+        return totalPrice(menuItems) - totalBenefitAmount(date, menuItems);
+    }
 }
