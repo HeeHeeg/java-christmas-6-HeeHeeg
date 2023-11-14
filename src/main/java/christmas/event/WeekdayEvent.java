@@ -2,7 +2,6 @@ package christmas.event;
 
 import christmas.menu.MenuItem;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -11,13 +10,14 @@ import static christmas.event.EventManager.isWithinDecemberEventPeriod;
 
 public class WeekdayEvent {
     private static final int DISCOUNT_PER_DESSERT_PRICE = 2023;
+    private static final EventManager eventManager = new EventManager();
 
     public int calculateDessertDiscount(List<MenuItem> orderedItems, int date) {
         LocalDate reservationDate = LocalDate.of(2023, 12, date);
-        if (!isWithinDecemberEventPeriod(reservationDate) || isWeekend(reservationDate)) {
-            return DISCOUNT_ZERO;
+        if ((isWithinDecemberEventPeriod(reservationDate) && !eventManager.isWeekend(reservationDate))) {
+            return calculateWeekdayDiscount(orderedItems);
         }
-        return calculateDiscountForDesserts(orderedItems);
+        return DISCOUNT_ZERO;
     }
 
     private boolean isWeekend(LocalDate date) {

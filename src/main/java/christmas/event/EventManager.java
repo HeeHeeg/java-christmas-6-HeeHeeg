@@ -1,5 +1,6 @@
 package christmas.event;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class EventManager {
@@ -15,5 +16,10 @@ public class EventManager {
 
     public static boolean isWithinDecemberEventPeriod(LocalDate date) {
         return !date.isBefore(DECEMBER_EVENT_START_DATE) && !date.isAfter(DECEMBER_EVENT_END_DATE);
+    }
+
+    public boolean isWeekend(LocalDate date) {
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+        return dayOfWeek == DayOfWeek.FRIDAY || dayOfWeek == DayOfWeek.SATURDAY;
     }
 }
