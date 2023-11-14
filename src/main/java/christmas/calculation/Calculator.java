@@ -21,22 +21,36 @@ public class Calculator {
     }
 
     public int totalBenefitAmount(int date, List<MenuItem> menuItems) {
-        int discountChristmasEventBenefitAmount = christmasDiscountEvent.checkChristmasDiscountPeriod(date);
-        int discountWeekdayEventBenefitAmount = weekdayEvent.calculateDessertDiscount(menuItems, date);
-        int discountWeekendEventBenefitAmount = weekendEvent.calculateMainDiscount(menuItems, date);
-        int discountSpecialEventBenefitAmount = specialDiscountEvent.calculateSpecialDiscount(date);
+        int christmasBenefitAmount = christmasDiscountEvent.checkChristmasDiscountPeriod(date);
+        int weekdayBenefitAmount = weekdayEvent.calculateDessertDiscount(menuItems, date);
+        int weekendBenefitAmount = weekendEvent.calculateMainDiscount(menuItems, date);
+        int specialBenefitAmount = specialDiscountEvent.calculateSpecialDiscount(date);
 
         Menu giveawayItem = giveawayEvent.checkGiveawayEvent(date, menuItems);
-        int discountGiveawayEventBenefitAmount = 0;
+        int giveawayBenefitAmount = 0;
         if (giveawayItem != null) {
-            discountGiveawayEventBenefitAmount = giveawayItem.getPrice();
+            giveawayBenefitAmount = giveawayItem.getPrice();
         }
 
-        int totalBenefitAmount = discountChristmasEventBenefitAmount
-                + discountWeekdayEventBenefitAmount
-                + discountWeekendEventBenefitAmount
-                + discountSpecialEventBenefitAmount
-                + discountGiveawayEventBenefitAmount;
+        int totalBenefitAmount = getTotalBenefitAmount(
+                christmasBenefitAmount,
+                weekdayBenefitAmount,
+                weekendBenefitAmount,
+                specialBenefitAmount,
+                giveawayBenefitAmount);
+        return totalBenefitAmount;
+    }
+
+    private int getTotalBenefitAmount(
+            int christmasBenefitAmount, int weekdayBenefitAmount, int weekendBenefitAmount,
+            int specialBenefitAmount, int giveawayBenefitAmount) {
+
+        int totalBenefitAmount =
+                christmasBenefitAmount
+                + weekdayBenefitAmount
+                + weekendBenefitAmount
+                + specialBenefitAmount
+                + giveawayBenefitAmount;
         return totalBenefitAmount;
     }
 }
