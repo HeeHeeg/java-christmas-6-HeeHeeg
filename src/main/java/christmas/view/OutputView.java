@@ -32,30 +32,12 @@ public class OutputView {
 
     public void benefitDetails(int date, List<MenuItem> menuItems) {
         System.out.println("\n<혜택 내역>");
-        String christmasDetail = checkBenefits.christmas(date);
-        if (!christmasDetail.isEmpty()) {
-            System.out.println(christmasDetail);
-        }
-        String specialDetail = checkBenefits.special(date);
-        if (!specialDetail.isEmpty()) {
-            System.out.println(specialDetail);
-        }
-        String weekdayDetail = checkBenefits.weekday(date, menuItems);
-        if (!weekdayDetail.isEmpty()) {
-            System.out.println(weekdayDetail);
-        }
-        String weekendDetail = checkBenefits.weekend(date, menuItems);
-        if (!weekendDetail.isEmpty()) {
-            System.out.println(weekendDetail);
-        }
-        String giveawayDetail = checkBenefits.giveaway(date, menuItems);
-        if (!giveawayDetail.isEmpty()) {
-            System.out.println(giveawayDetail);
-        }
-        String allBenefitsDetail = checkBenefits.allBenefits(date, menuItems);
-        if (!allBenefitsDetail.isEmpty()) {
-            System.out.println(allBenefitsDetail);
-        }
+        christmasBenefits(date);
+        specialBenefits(date);
+        weekdayBenefits(date, menuItems);
+        weekendBenefits(date, menuItems);
+        giveawayBenefits(date, menuItems);
+        checkAllBenefits(date, menuItems);
     }
 
     public void totalBenefitAmount(int date, List<MenuItem> menuItems) {
@@ -75,5 +57,47 @@ public class OutputView {
 
     private String expectedPaymentAmount(int date, List<MenuItem> menuItems) {
         return priceFormatter.formatPrice(calculator.expectedPaymentAmount(date, menuItems));
+    }
+
+    private void christmasBenefits(int date) {
+        String christmasDetail = checkBenefits.christmas(date);
+        if (!christmasDetail.isEmpty()) {
+            System.out.println(christmasDetail);
+        }
+    }
+
+    private void specialBenefits(int date) {
+        String specialDetail = checkBenefits.special(date);
+        if (!specialDetail.isEmpty()) {
+            System.out.println(specialDetail);
+        }
+    }
+
+    private void weekdayBenefits(int date, List<MenuItem> menuItems) {
+        String weekdayDetail = checkBenefits.weekday(date, menuItems);
+        if (!weekdayDetail.isEmpty()) {
+            System.out.println(weekdayDetail);
+        }
+    }
+
+    private void weekendBenefits(int date, List<MenuItem> menuItems) {
+        String weekendDetail = checkBenefits.weekend(date, menuItems);
+        if (!weekendDetail.isEmpty()) {
+            System.out.println(weekendDetail);
+        }
+    }
+
+    private void giveawayBenefits(int date, List<MenuItem> menuItems) {
+        String giveawayDetail = checkBenefits.giveaway(date, menuItems);
+        if (!giveawayDetail.isEmpty()) {
+            System.out.println(giveawayDetail);
+        }
+    }
+
+    private void checkAllBenefits(int date, List<MenuItem> menuItems) {
+        String allBenefitsDetail = checkBenefits.allBenefits(date, menuItems);
+        if (!allBenefitsDetail.isEmpty()) {
+            System.out.println(allBenefitsDetail);
+        }
     }
 }
