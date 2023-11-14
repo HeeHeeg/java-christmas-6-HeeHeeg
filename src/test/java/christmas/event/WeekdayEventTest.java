@@ -25,8 +25,8 @@ class WeekdayEventTest {
     void reservationDateByNotWeekday(int date) {
         // given
         List<MenuItem> orderedItems = List.of(
-                new MenuItem(Menu.getMenuByName("해산물파스타").orElse(null), 1),
-                new MenuItem(Menu.getMenuByName("아이스크림").orElse(null), 2));
+                new MenuItem(Menu.SEAFOOD_PASTA, 1),
+                new MenuItem(Menu.ICE_CREAM, 2));
 
         // when
         int discountedPrice = weekdayEvent.calculateDessertDiscount(orderedItems, date);
@@ -41,8 +41,8 @@ class WeekdayEventTest {
     void reservationDateWeekdaysDiscountPerDessert(int date) {
         // given
         List<MenuItem> orderedItems = List.of(
-                new MenuItem(Menu.getMenuByName("해산물파스타").orElse(null), 1),
-                new MenuItem(Menu.getMenuByName("아이스크림").orElse(null), 2));
+                new MenuItem(Menu.SEAFOOD_PASTA, 1),
+                new MenuItem(Menu.ICE_CREAM, 2));
 
         // when
         int discountedPrice = weekdayEvent.calculateDessertDiscount(orderedItems, date);

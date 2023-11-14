@@ -19,14 +19,14 @@ class WeekendEventTest {
         weekendEvent = new WeekendEvent();
     }
 
-    @DisplayName("예약일이 일요일~목요일(평일)이면 디저트 할인 금액 0원을 반환한다.")
+    @DisplayName("예약일이 일요일~목요일(평일)이면 메인 메뉴 할인 금액 0원을 반환한다.")
     @ParameterizedTest
-    @ValueSource(ints = {3, 4, 5, 6, 7}) // 2023년 12월의 일요일~목요일 날짜
+    @ValueSource(ints = {3, 4, 5, 6, 7, 25}) // 2023년 12월의 일요일~목요일 날짜
     void reservationDateByNotWeekday(int date) {
         // given
         List<MenuItem> orderedItems = List.of(
-                new MenuItem(getMenuByName("해산물파스타").orElse(null), 1),
-                new MenuItem(getMenuByName("아이스크림").orElse(null), 2));
+                new MenuItem(SEAFOOD_PASTA, 1),
+                new MenuItem(ICE_CREAM, 2));
 
         // when
         int discountedPrice = weekendEvent.calculateMainDiscount(orderedItems, date);
