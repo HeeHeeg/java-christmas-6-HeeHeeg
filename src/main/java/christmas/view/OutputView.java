@@ -38,7 +38,8 @@ public class OutputView {
         System.out.println("<혜택 내역>");
         System.out.println("크리스마스 디데이 할인: -" + christmasBenefitAmount(date) + "원");
         System.out.println("평일 할인: -" + weekdayBenefitAmount(date, menuItems) + "원");
-        System.out.println("특별 할인: -" + weekendBenefitAmount(date, menuItems) + "원");
+        System.out.println("주말 할인: -" + weekendBenefitAmount(date, menuItems) + "원");
+        System.out.println("특별 할인: -" + specialBenefitAmount(date) + "원");
         System.out.println("증정 이벤트: -" + giveawayBenefitAmount(date, menuItems) + "원");
     }
 
@@ -58,6 +59,10 @@ public class OutputView {
 
     private String weekendBenefitAmount(int date, List<MenuItem> menuItems) {
         return priceFormatter.formatPrice(calculator.getWeekendBenefitAmount(date, menuItems));
+    }
+
+    private String specialBenefitAmount(int date) {
+        return priceFormatter.formatPrice(calculator.getSpecialBenefitAmount(date));
     }
 
     private String giveawayBenefitAmount(int date, List<MenuItem> menuItems) {
