@@ -65,4 +65,18 @@ class CalculatorTest {
         //then
         assertThat(totalledPrice).isEqualTo(0);
     }
+
+    @DisplayName("날짜와 메뉴를 받아서 할인 후 예상 결제 금액(총금액-총혜택 금액)을 계산하여 반환한다.")
+    @Test
+    void calculateExpectedPaymentAmount() {
+        //given
+        int date = 3;
+        List<MenuItem> orderedItems = List.of(new MenuItem(Menu.ICE_CREAM, 2));
+
+        //when
+        int totalledPrice = calculator.expectedPaymentAmount(date, orderedItems);
+
+        //then
+        assertThat(totalledPrice).isEqualTo(3754);
+    }
 }
