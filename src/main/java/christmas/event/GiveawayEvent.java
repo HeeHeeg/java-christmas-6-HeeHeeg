@@ -18,7 +18,7 @@ public class GiveawayEvent {
         if (!isWithinDecemberEventPeriod(reservationDate)) {
             return null;
         }
-        if (calculator.calculateTotalPrice(menuItems) >= EVENT_STANDARD_AMOUNT) {
+        if (calculator.totalPrice(menuItems) >= EVENT_STANDARD_AMOUNT) {
             return Menu.CHAMPAGNE;
         }
         return null;

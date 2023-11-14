@@ -21,7 +21,7 @@ public class WeekendEvent {
     }
 
 
-    public int calculateDiscountForMain(List<MenuItem> orderedItems) {
+    private int calculateWeekendDiscount(List<MenuItem> orderedItems) {
         int mainCount = 0;
 
         for (MenuItem orderedItem : orderedItems) {

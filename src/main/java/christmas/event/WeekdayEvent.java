@@ -20,12 +20,7 @@ public class WeekdayEvent {
         return DISCOUNT_ZERO;
     }
 
-    private boolean isWeekend(LocalDate date) {
-        DayOfWeek dayOfWeek = date.getDayOfWeek();
-        return dayOfWeek == DayOfWeek.FRIDAY || dayOfWeek == DayOfWeek.SATURDAY;
-    }
-
-    public int calculateDiscountForDesserts(List<MenuItem> orderedItems) {
+    private int calculateWeekdayDiscount(List<MenuItem> orderedItems) {
         int dessertCount = 0;
 
         for (MenuItem orderedItem : orderedItems) {
