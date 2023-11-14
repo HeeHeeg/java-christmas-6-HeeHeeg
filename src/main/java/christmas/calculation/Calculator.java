@@ -6,7 +6,10 @@ import christmas.menu.MenuItem;
 
 import java.util.List;
 
+import static christmas.event.EventManager.DISCOUNT_ZERO;
+
 public class Calculator {
+    private static final int MINIMUM_ORDER_AMOUNT = 10000;
     private static final ChristmasDiscountEvent christmasDiscountEvent = new ChristmasDiscountEvent();
     private static final WeekdayEvent weekdayEvent = new WeekdayEvent();
     private static final WeekendEvent weekendEvent = new WeekendEvent();
@@ -21,6 +24,9 @@ public class Calculator {
     }
 
     public int totalBenefitAmount(int date, List<MenuItem> menuItems) {
+        if (totalPrice(menuItems) < MINIMUM_ORDER_AMOUNT) {
+            return DISCOUNT_ZERO;
+        }
         int christmasBenefitAmount = christmasDiscountEvent.checkChristmasDiscountPeriod(date);
         int weekdayBenefitAmount = weekdayEvent.calculateDessertDiscount(menuItems, date);
         int weekendBenefitAmount = weekendEvent.calculateMainDiscount(menuItems, date);
