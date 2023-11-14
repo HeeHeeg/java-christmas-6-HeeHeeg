@@ -32,4 +32,23 @@ class CalculatorTest {
         //then
         assertThat(totalledPrice).isEqualTo(80000);
     }
+
+    @DisplayName("날짜와 메뉴를 받아서 총혜택 금액을 반환한다.")
+    @Test
+    void calculateTotalBenefitAmount() {
+        //given
+        int date = 25;
+        List<MenuItem> orderedItems = List.of(
+                new MenuItem(Menu.CAESAR_SALAD, 2),
+                new MenuItem(Menu.T_BONE_STEAK, 2),
+                new MenuItem(Menu.ICE_CREAM, 2),
+                new MenuItem(Menu.RED_WINE, 2));
+
+        //when
+        int totalledPrice = calculator.totalBenefitAmount(date, orderedItems);
+
+        //then
+        int expectedTotalBenefitAmount = 33446;
+        assertThat(totalledPrice).isEqualTo(expectedTotalBenefitAmount);
+    }
 }
