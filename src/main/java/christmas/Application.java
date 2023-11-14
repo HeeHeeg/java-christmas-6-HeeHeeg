@@ -13,10 +13,12 @@ public class Application {
     private static final Calculator calculator = new Calculator();
 
     public static void main(String[] args) {
-        inputView.readDate();
+        int date = inputView.readDate();
         List<MenuItem> orderedMenu = inputView.readMenu();
         outputView.printMenu(orderedMenu);
         int totalPrice = calculator.totalPrice(orderedMenu);
         outputView.printTotalPrice(totalPrice);
+        outputView.printGiveawayMenu(date, orderedMenu);
+        outputView.benefitDetails(date, orderedMenu);
     }
 }
