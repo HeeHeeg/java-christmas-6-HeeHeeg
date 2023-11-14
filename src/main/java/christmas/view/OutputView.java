@@ -2,6 +2,8 @@ package christmas.view;
 
 import christmas.calculation.Calculator;
 import christmas.calculation.PriceFormatter;
+import christmas.event.Badge;
+import christmas.event.BadgeAwarder;
 import christmas.event.GiveawayEvent;
 import christmas.menu.MenuItem;
 
@@ -11,6 +13,7 @@ public class OutputView {
     private static final PriceFormatter priceFormatter = new PriceFormatter();
     private static final Calculator calculator = new Calculator();
     private static final GiveawayEvent giveaway = new GiveawayEvent();
+    private static final BadgeAwarder badgeAwarder = new BadgeAwarder();
 
     public void printMenu(List<MenuItem> menuItems) {
         System.out.println("12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
@@ -55,6 +58,12 @@ public class OutputView {
         System.out.println(expectedPaymentAmount(date, menuItems));
     }
 
+    public void earnedBadges(int date, List<MenuItem> menuItems) {
+        System.out.println();
+        System.out.println("<12월 이벤트 배지>");
+        System.out.println(getBadge(date, menuItems).getDisplayName());
+    }
+
     private String expectedPaymentAmount(int date, List<MenuItem> menuItems) {
         return priceFormatter.formatPrice(calculator.expectedPaymentAmount(date, menuItems));
     }
@@ -81,5 +90,9 @@ public class OutputView {
 
     private static String getTotalBenefitAmount(int date, List<MenuItem> menuItems) {
         return priceFormatter.formatPrice(calculator.totalBenefitAmount(date, menuItems));
+    }
+
+    private Badge getBadge(int date, List<MenuItem> menuItems) {
+        return badgeAwarder.getBadge(date, menuItems);
     }
 }

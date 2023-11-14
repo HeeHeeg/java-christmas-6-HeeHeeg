@@ -22,5 +22,6 @@ public class Application {
         outputView.benefitDetails(date, orderedMenu);
         outputView.totalBenefitAmount(date, orderedMenu);
         outputView.totalPaymentAmount(date, orderedMenu);
+        outputView.earnedBadges(date, orderedMenu);
     }
 }
