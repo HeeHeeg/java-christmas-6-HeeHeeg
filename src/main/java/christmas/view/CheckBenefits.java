@@ -7,6 +7,7 @@ import christmas.menu.MenuItem;
 
 import java.util.List;
 
+import static christmas.calculation.Calculator.MINIMUM_ORDER_AMOUNT;
 import static christmas.event.EventManager.DISCOUNT_ZERO;
 
 public class CheckBenefits {

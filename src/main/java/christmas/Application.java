@@ -19,7 +19,7 @@ public class Application {
         int totalPrice = calculator.totalPrice(orderedMenu);
         outputView.printTotalPrice(totalPrice);
         outputView.printGiveawayMenu(date, orderedMenu);
-        outputView.benefitDetails(date, orderedMenu);
+        outputView.benefitDetails(date, orderedMenu, totalPrice);
         outputView.totalBenefitAmount(date, orderedMenu);
         outputView.totalPaymentAmount(date, orderedMenu);
         outputView.earnedBadges(date, orderedMenu);

@@ -6,6 +6,8 @@ import christmas.menu.MenuItem;
 
 import java.util.List;
 
+import static christmas.calculation.Calculator.MINIMUM_ORDER_AMOUNT;
+
 public class OutputView {
     private static final CheckBenefits checkBenefits = new CheckBenefits();
     private static final PriceFormatter priceFormatter = new PriceFormatter();
@@ -30,8 +32,12 @@ public class OutputView {
         System.out.println(checkBenefits.giveawayMenu(date, menuItems));
     }
 
-    public void benefitDetails(int date, List<MenuItem> menuItems) {
+    public void benefitDetails(int date, List<MenuItem> menuItems, int totalPrice) {
         System.out.println("\n<혜택 내역>");
+        if (totalPrice < MINIMUM_ORDER_AMOUNT) {
+            System.out.println("없음");
+            return;
+        }
         christmasBenefits(date);
         specialBenefits(date);
         weekdayBenefits(date, menuItems);

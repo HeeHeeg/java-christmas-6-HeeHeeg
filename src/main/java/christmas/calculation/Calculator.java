@@ -8,7 +8,7 @@ import java.util.List;
 import static christmas.event.EventManager.DISCOUNT_ZERO;
 
 public class Calculator {
-    private static final int MINIMUM_ORDER_AMOUNT = 10000;
+    public static final int MINIMUM_ORDER_AMOUNT = 10000;
     private final ChristmasDiscountEvent christmasDiscountEvent;
     private final WeekdayEvent weekdayEvent;
     private final WeekendEvent weekendEvent;
