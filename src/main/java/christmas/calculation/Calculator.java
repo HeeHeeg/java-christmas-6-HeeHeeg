@@ -24,6 +24,12 @@ public class Calculator {
         return totalPrice;
     }
 
+    public int finalDiscountAmount(int date, List<MenuItem> menuItems) {
+        int giveawayBenefitAmount = getGiveawayBenefitAmount(date, menuItems);
+        return totalBenefitAmount(date, menuItems) - giveawayBenefitAmount;
+
+    }
+
     public int totalBenefitAmount(int date, List<MenuItem> menuItems) {
         if (totalPrice(menuItems) < MINIMUM_ORDER_AMOUNT) {
             return DISCOUNT_ZERO;
@@ -38,7 +44,7 @@ public class Calculator {
         int specialBenefitAmount = getSpecialBenefitAmount(date);
         int giveawayBenefitAmount = getGiveawayBenefitAmount(date, menuItems);
 
-        int totalBenefitAmount = getTotalBenefitAmount(christmasBenefitAmount, weekdayBenefitAmount,
+        int totalBenefitAmount = calculateTotalBenefitAmount(christmasBenefitAmount, weekdayBenefitAmount,
                 weekendBenefitAmount, specialBenefitAmount, giveawayBenefitAmount);
         return totalBenefitAmount;
     }
@@ -72,7 +78,7 @@ public class Calculator {
         return giveawayBenefitAmount;
     }
 
-    private int getTotalBenefitAmount(
+    private int calculateTotalBenefitAmount(
             int christmasBenefitAmount, int weekdayBenefitAmount, int weekendBenefitAmount,
             int specialBenefitAmount, int giveawayBenefitAmount) {
 
@@ -82,6 +88,6 @@ public class Calculator {
     }
 
     public int expectedPaymentAmount(int date, List<MenuItem> menuItems) {
-        return totalPrice(menuItems) - totalBenefitAmount(date, menuItems);
+        return totalPrice(menuItems) - finalDiscountAmount(date, menuItems);
     }
 }
