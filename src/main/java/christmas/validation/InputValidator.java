@@ -9,6 +9,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class InputValidator {
+    private static final String DATE_MESSAGE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
+    private static final String ORDER_MESSAGE = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
+    private static final String ONLY_BEVERAGES_ORDER_MESSAGE = "[ERROR] 음료만 주문 시, 주문할 수 없습니다. 다시 입력해주세요.";
+    private static final String MAXIMUM_ORDER_MESSAGE = "[ERROR] 메뉴는 한 번에 최대 20개 까지만 주문할 수 있습니다.";
     private static final int EVENT_START_DATE = 1;
     private static final int EVENT_END_DATE = 31;
     private static final int MINIMUM_QUANTITY = 1;
@@ -17,39 +21,39 @@ public class InputValidator {
 
     public void date(int reservationDate) {
         if (!(reservationDate >= EVENT_START_DATE && reservationDate <= EVENT_END_DATE)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(DATE_MESSAGE);
         }
     }
 
     public void menuQuantity(int quantity) {
         if (!(quantity >= MINIMUM_QUANTITY)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-        }
-    }
-
-    public void checkForDuplicateMenu(String menuName, List<MenuItem> orderedMenuList) {
-        for (MenuItem menuItem : orderedMenuList) {
-            if (menuItem.getMenu().getName().equalsIgnoreCase(menuName)) {
-                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-            }
+            throw new IllegalArgumentException(ORDER_MESSAGE);
         }
     }
 
     public void checkMenuLength(String[] parts) {
         if (parts.length != CHECK_MENU_LENGTH) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ORDER_MESSAGE);
         }
     }
 
     public void checkMenuName(String menuName) {
         if (!isValidMenu(menuName)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ORDER_MESSAGE);
         }
     }
 
     public boolean isValidMenu(String menuName) {
         return Arrays.stream(Menu.values())
                 .anyMatch(menu -> menu.getName().equalsIgnoreCase(menuName));
+    }
+
+    public void checkForDuplicateMenu(String menuName, List<MenuItem> orderedMenuList) {
+        for (MenuItem menuItem : orderedMenuList) {
+            if (menuItem.getMenu().getName().equalsIgnoreCase(menuName)) {
+                throw new IllegalArgumentException(ORDER_MESSAGE);
+            }
+        }
     }
 
     public void checkOnlyBeveragesOrdered(List<MenuItem> orderedMenuList) {
@@ -59,7 +63,7 @@ public class InputValidator {
                 return;
             }
         }
-        throw new IllegalArgumentException("[ERROR] 음료만 주문 시, 주문할 수 없습니다. 다시 입력해주세요.");
+        throw new IllegalArgumentException(ONLY_BEVERAGES_ORDER_MESSAGE);
     }
 
     public void checkOrderQuantity(List<MenuItem> orderedMenuList) {
@@ -68,7 +72,7 @@ public class InputValidator {
             totalQuantity += menuItem.getQuantity();
         }
         if (totalQuantity > MAXIMUM_ORDER_QUANTITY) {
-            throw new IllegalArgumentException("[ERROR] 메뉴는 한 번에 최대 20개 까지만 주문할 수 있습니다.");
+            throw new IllegalArgumentException(MAXIMUM_ORDER_MESSAGE);
         }
     }
 }
