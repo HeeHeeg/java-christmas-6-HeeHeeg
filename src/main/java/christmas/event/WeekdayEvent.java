@@ -14,7 +14,7 @@ public class WeekdayEvent {
     private static final EventManager eventManager = new EventManager();
     private static final PriceFormatter priceFormatter = new PriceFormatter();
 
-    public int calculateDessertDiscount(List<MenuItem> orderedItems, int date) {
+    public int checkDessertDiscount(int date, List<MenuItem> orderedItems) {
         LocalDate reservationDate = LocalDate.of(2023, 12, date);
         if ((isWithinDecemberEventPeriod(reservationDate) && !eventManager.isWeekend(reservationDate))) {
             return calculateWeekdayDiscount(orderedItems);
@@ -31,11 +31,7 @@ public class WeekdayEvent {
         return dessertCount * DISCOUNT_PER_DESSERT_PRICE;
     }
 
-    public int getWeekdayBenefitAmount(int date, List<MenuItem> menuItems) {
-        return calculateDessertDiscount(menuItems, date);
-    }
-
     public String weekdayBenefitAmount(int date, List<MenuItem> menuItems) {
-        return priceFormatter.formatPrice(getWeekdayBenefitAmount(date, menuItems));
+        return priceFormatter.formatPrice(checkDessertDiscount(date, menuItems));
     }
 }

@@ -20,11 +20,7 @@ public class ChristmasDiscountEvent {
         return BASE_DISCOUNT + (int) daysBetween * EXTRA_DISCOUNT;
     }
 
-    public int getChristmasBenefitAmount(int date) {
-        return checkChristmasDiscountPeriod(date);
-    }
-
     public String christmasBenefitAmount(int date) {
-        return priceFormatter.formatPrice(getChristmasBenefitAmount(date));
+        return priceFormatter.formatPrice(checkChristmasDiscountPeriod(date));
     }
 }

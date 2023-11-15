@@ -20,7 +20,7 @@ class SpecialDiscountEventTest {
     @ValueSource(ints = {3, 10, 17, 24, 25, 31})
     void calculateSpecialDiscount(int date) {
         // when
-        int discountedPrice = specialDiscountEvent.calculateSpecialDiscount(date);
+        int discountedPrice = specialDiscountEvent.checkSpecialDiscount(date);
 
         // then
         assertThat(discountedPrice).isEqualTo(1000);
@@ -31,7 +31,7 @@ class SpecialDiscountEventTest {
     @ValueSource(ints = {1, 2, 30})
     void calculateSpecialDiscountByNotSpecialDay(int date) {
         // when
-        int discountedPrice = specialDiscountEvent.calculateSpecialDiscount(date);
+        int discountedPrice = specialDiscountEvent.checkSpecialDiscount(date);
 
         // then
         assertThat(discountedPrice).isEqualTo(0);

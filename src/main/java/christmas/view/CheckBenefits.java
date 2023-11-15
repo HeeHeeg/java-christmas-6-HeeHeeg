@@ -28,10 +28,10 @@ public class CheckBenefits {
     }
 
     public String allBenefits(int date, List<MenuItem> menuItems) {
-        if ((christmasDiscountEvent.getChristmasBenefitAmount(date) == DISCOUNT_ZERO &&
-                specialDiscountEvent.getSpecialBenefitAmount(date) == DISCOUNT_ZERO &&
-                weekdayEvent.getWeekdayBenefitAmount(date, menuItems) == DISCOUNT_ZERO &&
-                weekendEvent.getWeekendBenefitAmount(date, menuItems) == DISCOUNT_ZERO &&
+        if ((christmasDiscountEvent.checkChristmasDiscountPeriod(date) == DISCOUNT_ZERO &&
+                specialDiscountEvent.checkSpecialDiscount(date) == DISCOUNT_ZERO &&
+                weekdayEvent.checkDessertDiscount(date, menuItems) == DISCOUNT_ZERO &&
+                weekendEvent.checkMainDiscount(date, menuItems) == DISCOUNT_ZERO &&
                 giveawayEvent.getGiveawayBenefitAmount(date, menuItems) == DISCOUNT_ZERO)) {
             return "없음";
         }
@@ -39,28 +39,28 @@ public class CheckBenefits {
     }
 
     public String christmas(int date) {
-        if (christmasDiscountEvent.getChristmasBenefitAmount(date) == DISCOUNT_ZERO) {
+        if (christmasDiscountEvent.checkChristmasDiscountPeriod(date) == DISCOUNT_ZERO) {
             return "";
         }
         return "크리스마스 디데이 할인: -" + christmasDiscountEvent.christmasBenefitAmount(date) + "원";
     }
 
     public String special(int date) {
-        if (specialDiscountEvent.getSpecialBenefitAmount(date) == DISCOUNT_ZERO) {
+        if (specialDiscountEvent.checkSpecialDiscount(date) == DISCOUNT_ZERO) {
             return "";
         }
         return "특별 할인: -" + specialDiscountEvent.specialBenefitAmount(date) + "원";
     }
 
     public String weekday(int date, List<MenuItem> menuItems) {
-        if (weekdayEvent.getWeekdayBenefitAmount(date, menuItems) == DISCOUNT_ZERO) {
+        if (weekdayEvent.checkDessertDiscount(date, menuItems) == DISCOUNT_ZERO) {
             return "";
         }
         return "평일 할인: -" + weekdayEvent.weekdayBenefitAmount(date, menuItems) + "원";
     }
 
     public String weekend(int date, List<MenuItem> menuItems) {
-        if (weekendEvent.getWeekendBenefitAmount(date, menuItems) == DISCOUNT_ZERO) {
+        if (weekendEvent.checkMainDiscount(date, menuItems) == DISCOUNT_ZERO) {
             return "";
         }
         return "주말 할인: -" + weekendEvent.weekendBenefitAmount(date, menuItems) + "원";

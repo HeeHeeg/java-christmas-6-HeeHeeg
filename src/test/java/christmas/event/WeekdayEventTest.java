@@ -29,7 +29,7 @@ class WeekdayEventTest {
                 new MenuItem(Menu.ICE_CREAM, 2));
 
         // when
-        int discountedPrice = weekdayEvent.calculateDessertDiscount(orderedItems, date);
+        int discountedPrice = weekdayEvent.checkDessertDiscount(date, orderedItems);
 
         // then
         assertThat(discountedPrice).isEqualTo(0);
@@ -45,7 +45,7 @@ class WeekdayEventTest {
                 new MenuItem(Menu.ICE_CREAM, 2));
 
         // when
-        int discountedPrice = weekdayEvent.calculateDessertDiscount(orderedItems, date);
+        int discountedPrice = weekdayEvent.checkDessertDiscount(date, orderedItems);
 
         // then
         assertThat(discountedPrice).isEqualTo(4046);

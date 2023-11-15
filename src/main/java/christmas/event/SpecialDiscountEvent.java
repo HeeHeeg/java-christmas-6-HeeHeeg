@@ -13,7 +13,7 @@ public class SpecialDiscountEvent {
     private static final int SPECIAL_DAY = 25;
     private static final PriceFormatter priceFormatter = new PriceFormatter();
 
-    public int calculateSpecialDiscount(int date) {
+    public int checkSpecialDiscount(int date) {
         LocalDate reservationDate = LocalDate.of(2023, 12, date);
         if (!isWithinDecemberEventPeriod(reservationDate)) {
             return DISCOUNT_ZERO;
@@ -24,11 +24,7 @@ public class SpecialDiscountEvent {
         return DISCOUNT_ZERO;
     }
 
-    public int getSpecialBenefitAmount(int date) {
-        return calculateSpecialDiscount(date);
-    }
-
     public String specialBenefitAmount(int date) {
-        return priceFormatter.formatPrice(getSpecialBenefitAmount(date));
+        return priceFormatter.formatPrice(checkSpecialDiscount(date));
     }
 }

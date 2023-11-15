@@ -14,14 +14,13 @@ public class WeekendEvent {
     private static final EventManager eventManager = new EventManager();
     private static final PriceFormatter priceFormatter = new PriceFormatter();
 
-    public int calculateMainDiscount(List<MenuItem> orderedItems, int date) {
+    public int checkMainDiscount(int date, List<MenuItem> orderedItems) {
         LocalDate reservationDate = LocalDate.of(2023, 12, date);
         if ((isWithinDecemberEventPeriod(reservationDate) && eventManager.isWeekend(reservationDate))) {
             return calculateWeekendDiscount(orderedItems);
         }
         return DISCOUNT_ZERO;
     }
-
 
     private int calculateWeekendDiscount(List<MenuItem> orderedItems) {
         int mainCount = 0;
@@ -32,11 +31,7 @@ public class WeekendEvent {
         return mainCount * DISCOUNT_PER_MAIN_PRICE;
     }
 
-    public int getWeekendBenefitAmount(int date, List<MenuItem> menuItems) {
-        return calculateMainDiscount(menuItems, date);
-    }
-
     public String weekendBenefitAmount(int date, List<MenuItem> menuItems) {
-        return priceFormatter.formatPrice(getWeekendBenefitAmount(date, menuItems));
+        return priceFormatter.formatPrice(checkMainDiscount(date, menuItems));
     }
 }
