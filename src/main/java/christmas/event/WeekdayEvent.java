@@ -1,5 +1,6 @@
 package christmas.event;
 
+import christmas.calculation.PriceFormatter;
 import christmas.menu.MenuItem;
 
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import static christmas.event.EventManager.isWithinDecemberEventPeriod;
 public class WeekdayEvent {
     private static final int DISCOUNT_PER_DESSERT_PRICE = 2023;
     private static final EventManager eventManager = new EventManager();
+    private static final PriceFormatter priceFormatter = new PriceFormatter();
 
     public int calculateDessertDiscount(List<MenuItem> orderedItems, int date) {
         LocalDate reservationDate = LocalDate.of(2023, 12, date);
@@ -27,5 +29,13 @@ public class WeekdayEvent {
             dessertCount += orderedItem.countDessert();
         }
         return dessertCount * DISCOUNT_PER_DESSERT_PRICE;
+    }
+
+    public int getWeekdayBenefitAmount(int date, List<MenuItem> menuItems) {
+        return calculateDessertDiscount(menuItems, date);
+    }
+
+    public String weekdayBenefitAmount(int date, List<MenuItem> menuItems) {
+        return priceFormatter.formatPrice(getWeekdayBenefitAmount(date, menuItems));
     }
 }

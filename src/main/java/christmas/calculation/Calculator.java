@@ -1,7 +1,6 @@
 package christmas.calculation;
 
 import christmas.event.*;
-import christmas.menu.Menu;
 import christmas.menu.MenuItem;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class Calculator {
     }
 
     public int finalDiscountAmount(int date, List<MenuItem> menuItems) {
-        int giveawayBenefitAmount = getGiveawayBenefitAmount(date, menuItems);
+        int giveawayBenefitAmount = giveawayEvent.getGiveawayBenefitAmount(date, menuItems);
         return totalBenefitAmount(date, menuItems) - giveawayBenefitAmount;
 
     }
@@ -38,44 +37,15 @@ public class Calculator {
     }
 
     private int getTotalBenefitAmount(int date, List<MenuItem> menuItems) {
-        int christmasBenefitAmount = getChristmasBenefitAmount(date);
-        int weekdayBenefitAmount = getWeekdayBenefitAmount(date, menuItems);
-        int weekendBenefitAmount = getWeekendBenefitAmount(date, menuItems);
-        int specialBenefitAmount = getSpecialBenefitAmount(date);
-        int giveawayBenefitAmount = getGiveawayBenefitAmount(date, menuItems);
+        int christmasBenefitAmount = christmasDiscountEvent.getChristmasBenefitAmount(date);
+        int weekdayBenefitAmount = weekdayEvent.getWeekdayBenefitAmount(date, menuItems);
+        int weekendBenefitAmount = weekendEvent.getWeekendBenefitAmount(date, menuItems);
+        int specialBenefitAmount = specialDiscountEvent.getSpecialBenefitAmount(date);
+        int giveawayBenefitAmount = giveawayEvent.getGiveawayBenefitAmount(date, menuItems);
 
         int totalBenefitAmount = calculateTotalBenefitAmount(christmasBenefitAmount, weekdayBenefitAmount,
                 weekendBenefitAmount, specialBenefitAmount, giveawayBenefitAmount);
         return totalBenefitAmount;
-    }
-
-    public int getChristmasBenefitAmount(int date) {
-        int christmasBenefitAmount = christmasDiscountEvent.checkChristmasDiscountPeriod(date);
-        return christmasBenefitAmount;
-    }
-
-    public int getWeekdayBenefitAmount(int date, List<MenuItem> menuItems) {
-        int weekdayBenefitAmount = weekdayEvent.calculateDessertDiscount(menuItems, date);
-        return weekdayBenefitAmount;
-    }
-
-    public int getWeekendBenefitAmount(int date, List<MenuItem> menuItems) {
-        int weekendBenefitAmount = weekendEvent.calculateMainDiscount(menuItems, date);
-        return weekendBenefitAmount;
-    }
-
-    public int getSpecialBenefitAmount(int date) {
-        int specialBenefitAmount = specialDiscountEvent.calculateSpecialDiscount(date);
-        return specialBenefitAmount;
-    }
-
-    public int getGiveawayBenefitAmount(int date, List<MenuItem> menuItems) {
-        Menu giveawayItem = giveawayEvent.checkGiveawayEvent(date, menuItems);
-        int giveawayBenefitAmount = 0;
-        if (giveawayItem != null) {
-            giveawayBenefitAmount = giveawayItem.getPrice();
-        }
-        return giveawayBenefitAmount;
     }
 
     private int calculateTotalBenefitAmount(
