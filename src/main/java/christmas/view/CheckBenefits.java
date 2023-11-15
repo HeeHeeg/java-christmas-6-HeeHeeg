@@ -21,7 +21,7 @@ public class CheckBenefits {
         if (giveaway.checkGiveawayEvent(date, menuItems) == null) {
             return "없음";
         }
-        return giveaway.checkGiveawayEvent(date, menuItems).getName() + "1개";
+        return giveaway.checkGiveawayEvent(date, menuItems).getName() + " 1개";
     }
 
     public String allBenefits(int date, List<MenuItem> menuItems) {
